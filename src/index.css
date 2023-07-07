@@ -1,0 +1,180 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1d1919;
+  color: #211a1a;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos del contenedor principal */
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilos del formulario de búsqueda */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.related-locations {
+  color: #ccc;
+}
+.search-input {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+  margin: 10px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 20px;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+}
+
+/* Estilos de las sugerencias de ubicación */
+
+.location-suggestion {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2e8648;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  list-style: none;
+  color: #ccc;
+}
+
+.location-suggestion:hover {
+  background-color: #061f20;
+}
+
+/* Estilos del título */
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ccc;
+}
+
+/* Estilos del componente ResidentInfo */
+.resident-info {
+  text-align: center;
+  background-color: #152b1b;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(109, 83, 49, 0.1);
+  transition: box-shadow 0.3s ease;
+  list-style: none;
+}
+.resident-info p {
+  color: #ccc;
+}
+
+.resident-info:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.resident-name {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+.resident-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.resident-status,
+.resident-origin,
+.resident-episodes {
+  margin-bottom: 5px;
+}
+
+/* Estilos de las tarjetas de residentes */
+.resident-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.resident-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.resident-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.resident-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.resident-card p {
+  margin-bottom: 5px;
+}
+
+/* Estilos del componente App */
+.app-container {
+  background-image: url("/backgroundHeader1.png");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center top;
+  max-width: 100%;
+  margin: 0;
+}
+
+.header {
+  background-image: url("/backgroundHeader1.png");
+  background-size: cover;
+  text-align: center;
+  max-width: 100%;
+}
+.mainText {
+  text-align: center;
+  color: #ccc;
+}
+
+.logo {
+  width: 700px;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-input {
+    margin-bottom: 10px;
+  }
+}
