@@ -1,92 +1,74 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import LocationComponent from "./componests/LocationComponent";
+import getRandomNumber from "./utils/getRandomNumber";
+import LocationInfo from "./components/LocationInfo";
+import ResidentCard from "./components/ResidentCard";
+import FormLocation from "./components/FormLocation";
 import "./App.css";
+import Loader from "./components/Loader";
 
-const App = () => {
-  const [location, setLocation] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+function App() {
+  const [location, setLocation] = useState();
+  const [idLocation, setIdLocation] = useState(getRandomNumber(126));
+  const [isLoading, setIsLoading] = useState(true);
+  const [inputError, setInputError] = useState(false);
+  
 
   useEffect(() => {
-    getRandomLocation();
-  }, []);
-
-  const getRandomLocation = () => {
-    const randomId = Math.floor(Math.random() * 108 + 1);
-    axios
-      .get(`https://rickandmortyapi.com/api/location/${randomId}`)
-      .then((response) => {
-        setLocation(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleSearch = () => {
-    if (searchInput !== "") {
+    const fetchData = () => {
+      const url = `https://rickandmortyapi.com/api/location/${idLocation}`;
+      setIsLoading(true);
       axios
-        .get(`https://rickandmortyapi.com/api/location/?name=${searchInput}`)
-        .then((response) => {
-          setSearchResults(response.data.results);
+        .get(url)
+        .then((res) => {
+          setLocation(res.data);
         })
-        .catch((error) => {
-          console.error(error);
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
+    };
+
+    fetchData();
+  }, [idLocation]);
+
+  const handleSetIdLocation = (value) => {
+    setInputError(false);
+
+    if (value >= 1 && value <= 126) {
+      setIdLocation(value);
     } else {
-      setSearchResults([]);
+      setInputError(true);
     }
   };
 
-  const handleLocationSelection = (selectedLocation) => {
-    setLocation(selectedLocation);
-    setSearchInput("");
-    setSearchResults([]);
-  };
-
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setSearchInput(inputValue);
-    handleSearch();
-  };
-
   return (
-    <section className="app-container">
-      <header className="header">
-        <img src="/logo1.svg" alt="Logo" className="logo" />
-        <div className="search-input">
-          <input
-            type="text"
-            placeholder="Enter location name"
-            value={searchInput}
-            onChange={handleInputChange}
-          />
-          <button
-            type="button"
-            className="search-button"
-            onClick={handleSearch}
-          >
-            Search
-          </button>
-          <h1>{location?.name}</h1>
-          <ul className="location-suggestions">
-            {searchResults.map((result) => (
-              <li
-                key={result.id}
-                onClick={() => handleLocationSelection(result)}
-                className="location-suggestion"
-              >
-                {result.name}
-              </li>
-            ))}
-          </ul>
-          <h2 className="related-locations">Related Locations:</h2>
-        </div>
-      </header>
-      {location ? <LocationComponent location={location} /> : <p>Loading...</p>}
+    <section>
+      <img src="/logo1.svg" alt="Logo" className="logo" />
+      <FormLocation
+        setIdLocation={handleSetIdLocation}
+        inputError={inputError}
+        setInputError={setInputError}
+      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <LocationInfo location={location} />
+          <div className="resident-container">
+            {location &&
+              location.residents &&
+              Array.isArray(location.residents) &&
+              location.residents.map((url) => (
+                <ResidentCard key={url} url={url} />
+              ))}
+          </div>
+        </>
+      )}
     </section>
   );
-};
+}
 
 export default App;

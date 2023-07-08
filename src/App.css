@@ -1,0 +1,11 @@
+.logo {
+  max-width: 60%;
+  display: block;
+  margin: auto;
+}
+.resident-container {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
