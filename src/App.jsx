@@ -12,7 +12,6 @@ function App() {
   const [idLocation, setIdLocation] = useState(getRandomNumber(126));
   const [isLoading, setIsLoading] = useState(true);
   const [inputError, setInputError] = useState(false);
-  
 
   useEffect(() => {
     const fetchData = () => {
@@ -46,7 +45,7 @@ function App() {
 
   return (
     <section>
-      <img src="/logo1.svg" alt="Logo" className="logo" />
+      <img src="/logo1.png" alt="Logo" className="logo" />
       <FormLocation
         setIdLocation={handleSetIdLocation}
         inputError={inputError}
@@ -65,6 +64,10 @@ function App() {
                 <ResidentCard key={url} url={url} />
               ))}
           </div>
+          <form className="footer">
+            <h3>Made with love in Academlo</h3>
+            <p>Web Developer: Oscar Vallejo</p>
+          </form>
         </>
       )}
     </section>
