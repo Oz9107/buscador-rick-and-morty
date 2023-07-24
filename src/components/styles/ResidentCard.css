@@ -193,3 +193,46 @@ li span:first-child {
   justify-content: center; /* Centrar horizontalmente */
   height: 16rem; /* Altura del contenedor */
 }
+@media screen and (max-width: 600px) {
+  .resident {
+    max-width: 100%;
+  }
+
+  .location_text-list {
+    width: 90%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    padding: 1%;
+    font-size: 13px;
+  }
+  .location_text-list {
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    overflow-wrap: break-word;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .resident {
+    max-width: 100%;
+  }
+
+  .location_text-list {
+    width: 100%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    padding: 1%;
+    font-size: 13px;
+  }
+}
